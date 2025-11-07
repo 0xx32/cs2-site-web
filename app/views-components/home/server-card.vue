@@ -1,24 +1,21 @@
 <script setup lang="ts">
 import { useCopy } from '@/composobles/useCopy'
+import type { Server } from './servers-container.vue'
 
 interface ServerCardProps {
-	id: number
-	ip: string
-	name: string
-	map: string
-	mode: string
+	server: Server
 }
 
-const { id, ip, map, name } = defineProps<ServerCardProps>()
+const { server } = defineProps<ServerCardProps>()
 
-const connectLink = `steam://run/730//+connect ${ip}`
+const connectLink = `steam://run/730//+connect ${server.ip}`
 
 const { copy } = useCopy()
 
 const toast = useToast()
 
 const copyIpHandler = () => {
-	copy(ip)
+	copy(server.ip)
 
 	toast.add({
 		title: `IP сервера скопирован`,
@@ -38,9 +35,9 @@ const copyIpHandler = () => {
 			<div class="flex justify-between">
 				<span
 					class="inline-flex items-center justify-between w-max px-2 rounded-md bg-accented mr-3 font-semibold"
-					>#{{ id }}</span
+					>#{{ server.id }}</span
 				>
-				<span class="font-bold text-xl">{{ name }}</span>
+				<span class="font-bold text-xl">{{ server.name }}</span>
 				<UBadge class="ml-auto" color="success">В сети</UBadge>
 			</div>
 		</template>
@@ -56,8 +53,10 @@ const copyIpHandler = () => {
 
 				<div class="z-10 relative mt-auto">
 					<div class="flex justify-between mb-4">
-						<UBadge variant="outline" color="neutral">{{ map }}</UBadge>
-						<span>1/23</span>
+						<UBadge variant="outline" color="neutral">{{ server.map_name }}</UBadge>
+						<UBadge variant="subtle" color="warning"
+							>{{ server.active_players }}/{{ server.max_players }}</UBadge
+						>
 					</div>
 
 					<div class="flex justify-between gap-4">

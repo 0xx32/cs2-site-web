@@ -7,7 +7,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 	{
 		label: 'Главная',
 		to: '/',
-		active: route.path.startsWith('/'),
+		active: route.path === '/',
 		icon: 'i-bxs-home-heart',
 	},
 	{
