@@ -3,7 +3,6 @@ import type { ColumnDef } from '@tanstack/vue-table'
 import type { TableRow } from '@nuxt/ui'
 
 import { steamIdTo64, type SteamId } from '~/utils/helpers/steam-utils'
-import { API_URL } from '~/utils/constants/api'
 
 interface GetPlayersResponse {
 	total: number
@@ -24,6 +23,8 @@ export interface Player {
 	banned: 0 | 1
 }
 
+const config = useRuntimeConfig()
+
 const PAGE_SIZE = 10
 
 useTemplateRef('table')
@@ -31,7 +32,7 @@ useTemplateRef('table')
 const currentPage = ref(1)
 const selectedSorting = ref('points')
 
-const { data, status } = useFetch<GetPlayersResponse>(`${API_URL}/players`, {
+const { data, status } = useFetch<GetPlayersResponse>(`${config.public.apiUrl}/players`, {
 	query: {
 		serverId: 1,
 		limit: PAGE_SIZE,

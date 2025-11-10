@@ -8,4 +8,11 @@ export default defineNuxtConfig({
 	imports: {
 		autoImport: true,
 	},
+
+	runtimeConfig: {
+		// Публичные (видны на клиенте)
+		public: {
+			apiUrl: process.env.NUXT_PUBLIC_API_URL,
+		},
+	},
 })

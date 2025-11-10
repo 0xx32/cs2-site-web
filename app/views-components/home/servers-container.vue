@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { API_URL } from '~/utils/constants/api'
 import ServerCard from './server-card.vue'
 
 export interface Server {
@@ -12,9 +11,13 @@ export interface Server {
 	status: 1 | 0
 }
 
-const { data: servers, refresh, pending } = await useFetch<Server[]>(`${API_URL}/servers`)
+const config = useRuntimeConfig()
 
-const serversIsExist = computed(() => !!servers.value?.length)
+const {
+	data: servers,
+	refresh,
+	pending,
+} = await useFetch<Server[]>(`${config.public.apiUrl}/servers`)
 
 const reload = async () => {
 	await refresh()
@@ -33,9 +36,9 @@ const reload = async () => {
 		<h2 class="font-semibold text-2xl">Наши сервера</h2>
 	</div>
 	<div class="grid grid-cols-3 gap-8">
-		<div v-if="!serversIsExist">Нет активных серверов</div>
+		<div v-if="!servers?.length">Нет активных серверов</div>
 
-		<template v-if="serversIsExist">
+		<template v-if="!!servers?.length">
 			<ServerCard
 				v-for="server in servers"
 				:key="server.id"
@@ -44,7 +47,7 @@ const reload = async () => {
 			/>
 		</template>
 
-		<template v-if="pending && serversIsExist">
+		<template v-if="pending && servers?.length === 0">
 			<USkeleton class="w-[380px] h-[242px]" />
 			<USkeleton class="w-[380px] h-[242px]" />
 			<USkeleton class="w-[380px] h-[242px]" />

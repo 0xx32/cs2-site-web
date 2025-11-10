@@ -29,14 +29,16 @@ const copyIpHandler = () => {
 		class="min-w-[200px] group"
 		:ui="{
 			body: 'sm:p-0',
+			header: 'sm:px-4',
 		}"
 	>
 		<template #header>
 			<div class="flex justify-between">
 				<span
 					class="inline-flex items-center justify-between w-max px-2 rounded-md bg-accented mr-3 font-semibold"
-					>#{{ server.id }}</span
 				>
+					#{{ server.id }}
+				</span>
 				<span class="font-bold text-xl">{{ server.name }}</span>
 				<UBadge v-if="server.status === 1" class="ml-auto" color="success">В сети</UBadge>
 				<UBadge v-if="server.status === 0" class="ml-auto" color="error">Выключен</UBadge>
@@ -45,19 +47,19 @@ const copyIpHandler = () => {
 
 		<template #default>
 			<div
-				class="sm:px-6 py-4 relative bg-cover h-[180px] flex flex-col"
+				class="sm:px-4 py-4 relative bg-cover h-[180px] flex flex-col"
 				style="background-image: url('/images/dust2.jpg')"
 			>
 				<div
-					class="before:absolute before:inset-0 before:bg-black/50 before:transition-opacity before:duration-300 before:content-[''] group-hover:before:opacity-0"
+					class="before:absolute before:inset-0 before:bg-black/30 before:transition-opacity before:duration-300 before:content-['']"
 				></div>
 
 				<div class="z-10 relative mt-auto">
 					<div class="flex justify-between mb-4">
 						<UBadge variant="outline" color="neutral">{{ server.map_name }}</UBadge>
-						<UBadge variant="subtle" color="warning"
-							>{{ server.active_players }}/{{ server.max_players }}</UBadge
-						>
+						<UBadge variant="subtle" color="warning">
+							{{ server.active_players }}/{{ server.max_players }}
+						</UBadge>
 					</div>
 
 					<div class="flex justify-between gap-4">
@@ -65,9 +67,12 @@ const copyIpHandler = () => {
 							Подключиться
 						</UButton>
 
-						<UButton color="info" variant="soft" class="cursor-pointer" :onclick="copyIpHandler"
-							>IP</UButton
-						>
+						<UButton
+							color="primary"
+							class="cursor-pointer text-gray-300/70"
+							:onclick="copyIpHandler"
+							icon="i-bxs-copy"
+						/>
 					</div>
 				</div>
 			</div>
