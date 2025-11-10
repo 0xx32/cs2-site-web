@@ -19,14 +19,15 @@ const items = computed<NavigationMenuItem[]>(() => [
 	{
 		label: 'Игроки',
 		icon: 'i-bxs-food-menu',
-		// children: [
-		//     {
-		//         label: "Топ",
-		//         description: "Список лучших игроков",
-		//         icon: "i-bxs-trophy",
-		//         to: "/players/top",
-		//     },
-		// ],
+
+		children: [
+			{
+				label: 'Топ',
+				description: 'Список лучших игроков',
+				icon: 'i-bxs-trophy',
+				to: '/leaderboard',
+			},
+		],
 	},
 ])
 </script>
@@ -37,7 +38,7 @@ const items = computed<NavigationMenuItem[]>(() => [
 			<span>ZZERO</span>
 		</template>
 
-		<UNavigationMenu :items="items" />
+		<UNavigationMenu :items="items" class="relative lg:justify-center flex" />
 
 		<template #right>
 			<div class="mr-2">

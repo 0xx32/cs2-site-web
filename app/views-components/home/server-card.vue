@@ -38,7 +38,8 @@ const copyIpHandler = () => {
 					>#{{ server.id }}</span
 				>
 				<span class="font-bold text-xl">{{ server.name }}</span>
-				<UBadge class="ml-auto" color="success">В сети</UBadge>
+				<UBadge v-if="server.status === 1" class="ml-auto" color="success">В сети</UBadge>
+				<UBadge v-if="server.status === 0" class="ml-auto" color="error">Выключен</UBadge>
 			</div>
 		</template>
 
