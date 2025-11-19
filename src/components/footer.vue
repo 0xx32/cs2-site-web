@@ -4,7 +4,7 @@ import { APP_CONFIG } from '@/app.config'
 
 <template>
 	<footer class="border-t border-zinc-800 py-6">
-		<div class="container mx-auto px-4">
+		<div class="app-container">
 			<div class="grid md:grid-cols-3 gap-8">
 				<div>
 					<div class="flex items-center gap-2 mb-2">

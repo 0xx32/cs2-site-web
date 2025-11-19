@@ -8,7 +8,9 @@ import Header from '@/components/header.vue'
 		<Header />
 
 		<main class="flex-1">
-			<slot />
+			<div class="app-container">
+				<slot />
+			</div>
 		</main>
 
 		<Footer />

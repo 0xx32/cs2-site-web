@@ -7,8 +7,10 @@ import Button from './ui/button/Button.vue'
 </script>
 
 <template>
-	<header class="sticky top-0 z-50 border-b border-zinc-800">
-		<div class="container mx-auto flex items-center justify-between py-4">
+	<header
+		class="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur supports-backdrop-filter:bg-black/60"
+	>
+		<div class="app-container flex h-16 items-center justify-between">
 			<div class="flex items-center gap-4">
 				<a href="/" class="text-xl font-bold">
 					<span class="text-primary">{{ APP_CONFIG.appName }}</span>
