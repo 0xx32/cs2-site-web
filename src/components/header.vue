@@ -11,25 +11,25 @@ const { user } = useUser()
 </script>
 
 <template>
-	<header
-		class="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur supports-backdrop-filter:bg-black/60"
-	>
-		<div class="app-container flex h-16 items-center justify-between">
-			<div class="flex items-center gap-4">
-				<a href="/" class="text-xl font-bold">
-					<span class="text-primary">{{ APP_CONFIG.appName }}</span>
-				</a>
-			</div>
-			<Navigation />
+  <header
+    class="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur supports-backdrop-filter:bg-black/60"
+  >
+    <div class="app-container flex h-16 items-center justify-between">
+      <div class="flex items-center gap-4">
+        <a href="/" class="text-xl font-bold">
+          <span class="text-primary">{{ APP_CONFIG.appName }}</span>
+        </a>
+      </div>
+      <Navigation />
 
-			<div class="flex items-center gap-4">
-				<ThemeModeSwitch />
+      <div class="flex items-center gap-4">
+        <ThemeModeSwitch />
 
-				<div v-if="user">I USER</div>
-				<Button v-else as-child>
-					<a :href="STEAM_AUTH_URL">Войти</a>
-				</Button>
-			</div>
-		</div>
-	</header>
+        <div v-if="user">I USER</div>
+        <Button v-else as-child>
+          <a :href="STEAM_AUTH_URL">Войти</a>
+        </Button>
+      </div>
+    </div>
+  </header>
 </template>
