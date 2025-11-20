@@ -4,6 +4,7 @@
     "": {
       "name": "cs2-web-site",
       "dependencies": {
+        "@siberiacancode/fetches": "^1.13.1",
         "@tailwindcss/vite": "^4.1.17",
         "@vueuse/core": "^14.0.0",
         "class-variance-authority": "^0.7.1",
@@ -175,6 +176,8 @@
     "@rolldown/binding-win32-x64-msvc": ["@rolldown/binding-win32-x64-msvc@1.0.0-beta.47", "", { "os": "win32", "cpu": "x64" }, "sha512-by/70F13IUE101Bat0oeH8miwWX5mhMFPk1yjCdxoTNHTyTdLgb0THNaebRM6AP7Kz+O3O2qx87sruYuF5UxHg=="],
 
     "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.0-beta.50", "", {}, "sha512-5e76wQiQVeL1ICOZVUg4LSOVYg9jyhGCin+icYozhsUzM+fHE7kddi1bdiE0jwVqTfkjba3jUFbEkoC9WkdvyA=="],
+
+    "@siberiacancode/fetches": ["@siberiacancode/fetches@1.13.1", "", {}, "sha512-gzFRLfq7vsZ+C31l/RjOU7Gpb9Ag1yCOWJdRiSWW/SKOZXvZfc3D90v5vukv4JJfYigQoakuI3dkzHLfR1o+Ow=="],
 
     "@sindresorhus/base62": ["@sindresorhus/base62@1.0.0", "", {}, "sha512-TeheYy0ILzBEI/CO55CP6zJCSdSWeRtGnHy8U8dWSUH4I68iqTsy7HkMktR4xakThc9jotkPQUXT4ITdbV7cHA=="],
 

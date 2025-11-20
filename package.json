@@ -12,6 +12,7 @@
 		"pretty": "bun lint --fix && bun format"
 	},
 	"dependencies": {
+		"@siberiacancode/fetches": "^1.13.1",
 		"@tailwindcss/vite": "^4.1.17",
 		"@vueuse/core": "^14.0.0",
 		"class-variance-authority": "^0.7.1",

@@ -1,9 +1,13 @@
 <script setup lang="ts">
 import { APP_CONFIG } from '@/app.config'
+import { STEAM_AUTH_URL } from '@/utils/constants/global'
+import { useUser } from '@/utils/stores/useUser'
 
 import Navigation from './navigation.vue'
 import ThemeModeSwitch from './theme-mode-switch.vue'
 import Button from './ui/button/Button.vue'
+
+const { user } = useUser()
 </script>
 
 <template>
@@ -21,7 +25,10 @@ import Button from './ui/button/Button.vue'
 			<div class="flex items-center gap-4">
 				<ThemeModeSwitch />
 
-				<Button>Войти</Button>
+				<div v-if="user">I USER</div>
+				<Button v-else as-child>
+					<a :href="STEAM_AUTH_URL">Войти</a>
+				</Button>
 			</div>
 		</div>
 	</header>
