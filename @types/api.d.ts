@@ -12,6 +12,7 @@ interface Product {
 }
 
 interface ProductVariant {
+	id: number
 	days: number
 	label: string
 	price: number

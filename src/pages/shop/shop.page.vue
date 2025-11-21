@@ -32,7 +32,7 @@ const shopItemsQuery = useQuery({
         </TabsList>
       </div>
       <TabsContent value="privileges">
-        <div v-if="shopItemsQuery.data" class="grid grid-cols-4 justify-items-center">
+        <div v-if="shopItemsQuery.data" class="grid grid-cols-3 justify-items-center">
           <ProductCard
             v-for="product in shopItemsQuery.data.value?.data.products"
             :key="product.id"

@@ -13,7 +13,7 @@ const { user } = useUser()
 
 <template>
   <header
-    class="sticky top-0 z-50 w-full border-b border-zinc-800 bg-black/95 backdrop-blur supports-backdrop-filter:bg-black/60"
+    class="sticky top-0 z-50 w-full border-b dark:bg-black/95 backdrop-blur dark:supports-backdrop-filter:bg-black/60"
   >
     <div class="app-container flex h-16 items-center justify-between">
       <div class="flex items-center gap-4">

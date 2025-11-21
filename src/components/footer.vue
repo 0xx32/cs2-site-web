@@ -3,7 +3,7 @@ import { APP_CONFIG } from '@/app.config'
 </script>
 
 <template>
-  <footer class="border-t border-zinc-800 py-6">
+  <footer class="border-t py-6">
     <div class="app-container">
       <div class="grid md:grid-cols-3 gap-8">
         <div>
@@ -68,7 +68,7 @@ import { APP_CONFIG } from '@/app.config'
           </ul>
         </div>
       </div>
-      <div class="mt-6 pt-4 border-t border-zinc-800 text-center text-sm text-zinc-500">
+      <div class="mt-6 pt-4 border-t text-center text-sm text-zinc-500">
         © 2025 CS2 Platform. Все права защищены.
       </div>
     </div>

@@ -122,5 +122,5 @@
 }
 
 .app-container {
-	@apply container mx-auto px-4;
+	@apply max-w-(--container-width) mx-auto px-4;
 }

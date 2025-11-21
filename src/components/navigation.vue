@@ -26,7 +26,20 @@ import { APP_ROUTES_NAMES } from '@/utils/constants/routes'
       <NavigationMenuItem>
         <NavigationMenuTrigger>Магазин</NavigationMenuTrigger>
         <NavigationMenuContent>
-          <ul class="grid w-[300px] gap-4">
+          <ul class="grid gap-2 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+            <li class="row-span-3">
+              <NavigationMenuLink as-child>
+                <RouterLink
+                  class="from-muted/50 to-muted flex h-full w-full flex-col justify-end rounded-md bg-linear-to-b p-6 no-underline outline-hidden select-none focus:shadow-md"
+                  :to="{ name: APP_ROUTES_NAMES.CART }"
+                >
+                  <div class="mt-4 mb-2 text-lg font-medium">Корзина</div>
+                  <p class="text-muted-foreground text-sm leading-tight">
+                    Ваши будущие покупки здесь!
+                  </p>
+                </RouterLink>
+              </NavigationMenuLink>
+            </li>
             <li>
               <NavigationMenuLink as-child>
                 <RouterLink :to="{ name: APP_ROUTES_NAMES.SHOP, params: { tab: 'privileges' } }">
@@ -34,6 +47,8 @@ import { APP_ROUTES_NAMES } from '@/utils/constants/routes'
                   <div class="text-muted-foreground">Бхоп, шприцы, и тд.</div>
                 </RouterLink>
               </NavigationMenuLink>
+            </li>
+            <li>
               <NavigationMenuLink as-child>
                 <RouterLink :to="{ name: APP_ROUTES_NAMES.SHOP, params: { tab: 'models' } }">
                   <div class="font-medium">Модели</div>

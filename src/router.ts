@@ -20,6 +20,11 @@ const routes: RouteRecordRaw[] = [
 		component: () => import('@/pages/shop/shop.page.vue'),
 		props: true,
 	},
+	{
+		path: `${APP_ROUTES.CART}`,
+		name: APP_ROUTES_NAMES.CART,
+		component: () => import('@/pages/shop/cart/cart.page.vue'),
+	},
 ]
 
 export const router = createRouter({

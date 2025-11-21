@@ -8,7 +8,7 @@ import Header from '@/components/header.vue'
     <Header />
 
     <main class="flex-1">
-      <div class="app-container">
+      <div class="app-container py-5">
         <slot />
       </div>
     </main>
