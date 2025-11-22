@@ -4,12 +4,17 @@ import type { HTMLAttributes } from 'vue'
 
 import { reactiveOmit } from '@vueuse/core'
 import { TabsList } from 'reka-ui'
+import { provide, ref } from 'vue'
 
 import { cn } from '@/lib/utils'
 
 const props = defineProps<TabsListProps & { class?: HTMLAttributes['class'] }>()
 
 const delegatedProps = reactiveOmit(props, 'class')
+
+// Предоставляем контекст для дочерних компонентов
+const hasIndicator = ref(false)
+provide('hasIndicator', hasIndicator)
 </script>
 
 <template>
@@ -18,7 +23,7 @@ const delegatedProps = reactiveOmit(props, 'class')
     v-bind="delegatedProps"
     :class="
       cn(
-        'bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
+        'relative bg-muted text-muted-foreground inline-flex h-9 w-fit items-center justify-center rounded-lg p-[3px]',
         props.class
       )
     "
