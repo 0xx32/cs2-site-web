@@ -1,3 +1,13 @@
+interface User {
+	id: string
+	steamId: bigint
+	role: UserRoles
+	balance: number
+	created_at: Date
+}
+
+type UserRoles = 'USER' | 'ADMIN' | 'MODERATOR' | 'ROOT'
+
 interface Product {
 	id: number
 	name: string

@@ -7,4 +7,4 @@ import { api } from '@/utils/api/instance'
 export type GetAuthMeRequestConfig = FetchesRequestConfig
 
 export const getAuthMe = ({ config }: GetAuthMeRequestConfig = {}) =>
-	api.get<User>('/auth/me', config)
+	api.get<{ user: User }>('/auth/me', config)

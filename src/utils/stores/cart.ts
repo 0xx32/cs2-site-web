@@ -75,7 +75,7 @@ const loadCart = (): Cart => {
 }
 
 const state = reactive<Cart>(loadCart())
-const cart = readonly(state) as DeepReadonly<Cart>
+const cartStore = readonly(state) as DeepReadonly<Cart>
 
 const persist = () => {
 	try {
@@ -143,8 +143,6 @@ const cartActions = {
 } as const
 
 export const useCartStore = () => ({
-	state: {
-		items: cart.items,
-	},
+	state: cartStore,
 	actions: cartActions,
 })

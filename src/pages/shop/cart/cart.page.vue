@@ -6,6 +6,7 @@ import Layout from '@/components/layouts/default.vue'
 import { Button } from '@/components/ui/button'
 import { Item, ItemContent } from '@/components/ui/item'
 import Separator from '@/components/ui/separator/Separator.vue'
+import { APP_ROUTES_NAMES } from '@/utils/constants/routes'
 import { useCartStore } from '@/utils/stores/cart'
 
 import CartEmpty from './-components/cart-empty.vue'
@@ -87,8 +88,9 @@ const currentTotalPrice = computed(() => cartStore.actions.getTotalPrice())
             <span class="text-lg font-semibold">{{ currentTotalPrice }} ₽ </span>
           </div>
 
-          <Button class="w-full flex items-center">
-            <span>Оформить заказ</span>
+          <Button class="w-full flex items-center"> Оформить заказ </Button>
+          <Button variant="secondary" as-child class="w-full flex items-center">
+            <RouterLink :to="{ name: APP_ROUTES_NAMES.SHOP }"> Вернуться в магазин </RouterLink>
           </Button>
         </Item>
       </div>

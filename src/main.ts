@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 
 import { getAuthMe } from '@/utils/api/requests'
-import { useUser } from '@/utils/stores/useUser'
+import { useUserStore } from '@/utils/stores/user'
 
 import App from './App.vue'
 import { router } from './router'
@@ -9,15 +9,15 @@ import { router } from './router'
 import '@/assets/styles/global.css'
 
 const setup = async () => {
-	const { setUser, logout } = useUser()
+	const userStore = useUserStore()
 	const authMeQuery = await getAuthMe({
 		config: {
 			credentials: 'include',
 		},
-	}).catch(() => logout())
+	}).catch(() => userStore.actions.logout())
 
 	if (authMeQuery) {
-		setUser(authMeQuery.data)
+		userStore.actions.setUser(authMeQuery.data.user)
 	}
 
 	createApp(App).use(router).mount('#app')
