@@ -1,3 +1,4 @@
+import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createApp } from 'vue'
 
 import { getAuthMe } from '@/utils/api/requests'
@@ -20,7 +21,7 @@ const setup = async () => {
 		userStore.actions.setUser(authMeQuery.data.user)
 	}
 
-	createApp(App).use(router).mount('#app')
+	createApp(App).use(router).use(VueQueryPlugin).mount('#app')
 }
 
 setup()

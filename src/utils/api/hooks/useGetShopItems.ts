@@ -1,16 +1,15 @@
-import { useQuery } from '@/composobles/useQuery'
+import { useQuery } from '@tanstack/vue-query'
 
-import type { GetShopItemsRequestConfig } from '../requests'
-import type { QuerySettings } from '../utils.type'
+import type { GetShopProductsRequestConfig } from '../requests'
 
-import { getShopItems } from '../requests'
+import { getShopProducts } from '../requests'
 
 export const useGetShopItems = (
-	settings?: QuerySettings<typeof getShopItems>,
-	config?: GetShopItemsRequestConfig
+	settings?: QuerySettings<typeof getShopProducts>,
+	config?: GetShopProductsRequestConfig
 ) =>
 	useQuery({
-		queryKey: 'shopItems',
-		queryFunction: () => getShopItems(config),
+		queryKey: ['shopItems'],
+		queryFn: () => getShopProducts(config),
 		...settings?.options,
 	})

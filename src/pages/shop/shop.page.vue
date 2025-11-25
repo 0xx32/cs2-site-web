@@ -31,7 +31,7 @@ const shopItemsQuery = useGetShopItems()
           class="grid grid-cols-3 gap-x-3 gap-y-6 justify-items-center"
         >
           <ProductCard
-            v-for="product in shopItemsQuery.data.value?.data.products"
+            v-for="product in shopItemsQuery.data.value?.data"
             :key="product.id"
             :product="product"
             class="w-full"

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ResponseError } from '@siberiacancode/fetches'
 import { computed, ref } from 'vue'
 import { toast } from 'vue-sonner'
 
@@ -15,8 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Separator } from '@/components/ui/separator'
-import { subtractPercentRounded } from '@/utils/helpers/number'
-import { useCartStore } from '@/utils/stores/cart'
+import { usePostCartItems } from '@/utils/api/hooks'
 
 interface ProductCardProps {
   product: Product
@@ -32,7 +32,7 @@ const { product } = defineProps<ProductCardProps>()
 const selectedVariant = ref<ProductVariant>(product.variants[0]!)
 const currentPrice = computed(() => selectedVariant.value.price)
 
-const cartStore = useCartStore()
+const postCartItemsMutation = usePostCartItems()
 
 const servers = [
   {
@@ -47,7 +47,7 @@ const servers = [
 
 const selectedServer = ref<Server>()
 
-const addCartHandler = () => {
+const addCartHandler = async () => {
   if (!selectedServer.value) {
     toast.warning('Сервер не выбран')
     return
@@ -57,27 +57,23 @@ const addCartHandler = () => {
     return
   }
 
-  const result = cartStore.actions.addItem({
-    product: {
-      id: product.id,
-      name: product.name,
-      discount: product.discountPercent,
-    },
-    server: {
-      id: selectedServer.value.id,
-      name: selectedServer.value.name,
-    },
-    variant: {
-      id: selectedVariant.value.id,
-      title: selectedVariant.value.label,
-      price: subtractPercentRounded(selectedVariant.value.price, product.discountPercent, 0),
-    },
-  })
+  try {
+    const response = await postCartItemsMutation.mutateAsync({
+      params: {
+        productVariantId: selectedVariant.value.id,
+        serverId: selectedServer.value.id,
+      },
+    })
 
-  if (result) {
-    toast.success('Товар добавлен в корзину')
-  } else {
-    toast.warning('Товар уже есть в корзине')
+    if (response.data.success) {
+      toast.success(response.data.message)
+    }
+  } catch (error) {
+    if (error instanceof ResponseError) {
+      const response = error.response.data as BaseResponse
+
+      toast.error(response.message)
+    }
   }
 }
 </script>
@@ -118,8 +114,12 @@ const addCartHandler = () => {
           <SelectContent>
             <SelectGroup>
               <SelectLabel>Периоды</SelectLabel>
-              <SelectItem v-for="period in product.variants" :key="period.days" :value="period">
-                {{ period.label }} - {{ period.price }}р
+              <SelectItem
+                v-for="period in product.variants"
+                :key="period.duration_days"
+                :value="period"
+              >
+                {{ period.duration_label }} - {{ period.price }}р
               </SelectItem>
             </SelectGroup>
           </SelectContent>
@@ -167,10 +167,12 @@ const addCartHandler = () => {
         <span class="text-sm text-muted-foreground">Итого к оплате:</span>
         <div class="text-right">
           <div class="text-lg font-bold">{{ currentPrice }}₽</div>
-          <div v-if="selectedVariant.days === 0" class="text-xs text-muted-foreground">
+          <div v-if="selectedVariant.duration_days === 0" class="text-xs text-muted-foreground">
             навсегда
           </div>
-          <div v-else class="text-xs text-muted-foreground">за {{ selectedVariant.days }} дней</div>
+          <div v-else class="text-xs text-muted-foreground">
+            за {{ selectedVariant.duration_days }} дней
+          </div>
         </div>
       </div>
 
